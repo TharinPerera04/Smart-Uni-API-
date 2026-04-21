@@ -25,3 +25,17 @@ public class DiscoveryResource {
 response.put("name", "Smart Campus Sensor & Room Management API");
         response.put("version", "v1");
         response.put("status", "running");
+        
+        Map<String, String> contact = new LinkedHashMap<>();
+        contact.put("moduleLeader", "Hamed Hamzeh");
+        contact.put("adminEmail", "admin@smartcampus.local");
+        response.put("contact", contact);
+
+        Map<String, String> resources = new LinkedHashMap<>();
+        resources.put("rooms", "/api/v1/rooms");
+        resources.put("sensors", "/api/v1/sensors");
+        response.put("resources", resources);
+
+        return response;
+    }
+}
