@@ -27,7 +27,7 @@ response.put("name", "Smart Campus Sensor & Room Management API");
         response.put("status", "running");
         
         Map<String, String> contact = new LinkedHashMap<>();
-        contact.put("moduleLeader", "Hamed Hamzeh");
+        contact.put("moduleLeader", "Cassim Farook");
         contact.put("adminEmail", "admin@smartcampus.local");
         response.put("contact", contact);
 
