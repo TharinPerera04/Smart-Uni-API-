@@ -8,6 +8,8 @@ package com.mycompany.coursework.exception;
  *
  * @author User
  */
-public class SensorUnavailableException {
-    
+public class SensorUnavailableException extends RuntimeException {
+    public SensorUnavailableException(String message) {
+        super(message);
+    }
 }
