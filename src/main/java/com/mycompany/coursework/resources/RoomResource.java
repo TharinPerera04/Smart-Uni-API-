@@ -27,4 +27,40 @@ public class RoomResource {
         return DataStore.rooms.values();
     }
 
-}    
+    // POST create room
+    @POST
+    public Response createRoom(Room room, @Context UriInfo uriInfo) {
+
+        if (room.getId() == null || room.getId().isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Room ID is required")
+                    .build();
+        }
+
+        DataStore.rooms.put(room.getId(), room);
+
+        URI location = uriInfo.getAbsolutePathBuilder()
+                .path(room.getId())
+                .build();
+
+        return Response.created(location).entity(room).build();
+    }
+
+    // GET room by ID
+    @GET
+    @Path("/{id}")
+    public Response getRoom(@PathParam("id") String id) {
+
+        Room room = DataStore.rooms.get(id);
+
+        if (room == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Room not found")
+                    .build();
+        }
+
+        return Response.ok(room).build();
+    }
+
+    
+}
