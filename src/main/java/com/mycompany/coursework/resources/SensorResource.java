@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.coursework.resources;
+
 import com.mycompany.coursework.data.DataStore;
+import com.mycompany.coursework.exception.LinkedResourceNotFoundException;
 import com.mycompany.coursework.model.Room;
 import com.mycompany.coursework.model.Sensor;
 
@@ -13,14 +15,13 @@ import java.util.Collection;
 import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-
-@Path("/sensors")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 /**
  *
  * @author User
  */
+@Path("/sensors")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class SensorResource {
 
     @POST
@@ -41,9 +42,7 @@ public class SensorResource {
         Room room = DataStore.rooms.get(sensor.getRoomId());
 
         if (room == null) {
-            return Response.status(422)
-                    .entity("Referenced room does not exist")
-                    .build();
+            throw new LinkedResourceNotFoundException("Referenced room does not exist");
         }
 
         DataStore.sensors.put(sensor.getId(), sensor);
@@ -92,6 +91,7 @@ public class SensorResource {
 
         return Response.ok(sensor).build();
     }
+
     @Path("/{id}/readings")
     public SensorReadingResource getSensorReadingResource(@PathParam("id") String sensorId) {
         return new SensorReadingResource(sensorId);

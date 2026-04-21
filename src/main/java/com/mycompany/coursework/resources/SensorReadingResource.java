@@ -4,6 +4,7 @@
  */
 package com.mycompany.coursework.resources;
 import com.mycompany.coursework.data.DataStore;
+import com.mycompany.coursework.exception.SensorUnavailableException;
 import com.mycompany.coursework.model.Sensor;
 import com.mycompany.coursework.model.SensorReading;
 
@@ -62,7 +63,9 @@ public class SensorReadingResource {
             sensorReadings = new ArrayList<>();
             DataStore.readings.put(sensorId, sensorReadings);
         }
-
+        if ("MAINTENANCE".equalsIgnoreCase(sensor.getStatus())) {
+        throw new SensorUnavailableException("Sensor is under maintenance");
+        }
         sensorReadings.add(reading);
 
         // important coursework requirement:
@@ -72,5 +75,6 @@ public class SensorReadingResource {
         return Response.status(Response.Status.CREATED)
                 .entity(reading)
                 .build();
-    }
+        }
+       
 }

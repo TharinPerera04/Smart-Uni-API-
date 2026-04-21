@@ -4,6 +4,7 @@
  */
 package com.mycompany.coursework.resources;
 import com.mycompany.coursework.data.DataStore;
+import com.mycompany.coursework.exception.RoomNotEmptyException;
 import com.mycompany.coursework.model.Room;
 
 import javax.ws.rs.*;
@@ -76,11 +77,9 @@ public class RoomResource {
         }
 
         // ❗ Important coursework rule
-        if (!room.getSensorIds().isEmpty()) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("Room has sensors. Cannot delete.")
-                    .build();
-        }
+            if (!room.getSensorIds().isEmpty()) {
+            throw new RoomNotEmptyException("Room has sensors. Cannot delete.");
+            }
 
         DataStore.rooms.remove(id);
 
