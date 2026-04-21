@@ -3,14 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.coursework.model;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author User
  */
-import java.util.ArrayList;
-import java.util.List;
-
 public class Room {
 
     private String id;
