@@ -7,11 +7,11 @@ import com.mycompany.coursework.model.ErrorResponse;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
+@Provider
 /**
  *
  * @author User
  */
-@Provider
 public class SensorUnavailableMapper implements ExceptionMapper<SensorUnavailableException> {
 
     @Override
