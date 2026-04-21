@@ -4,6 +4,7 @@
  */
 package com.mycompany.coursework.data;
 import com.mycompany.coursework.model.Room;
+import com.mycompany.coursework.model.Sensor;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -12,4 +13,5 @@ import java.util.Map;
  */
 public class DataStore {
     public static Map<String, Room> rooms = new HashMap<>();
+    public static Map<String, Sensor> sensors = new HashMap<>();
 }
