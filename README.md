@@ -22,7 +22,24 @@ http://localhost:8080/Coursework/api/v1
 ## Sample CURL Commands
 
 ### Get API Info
+## Create Room
+curl -X POST http://localhost:8080/Coursework/api/v1/rooms \
+-H "Content-Type: application/json" \
+-d "{\"id\":\"LIB-301\",\"name\":\"Library Study Room\",\"capacity\":50}"
 
+##Get All Rooms
+
+curl http://localhost:8080/Coursework/api/v1/rooms
+
+##Create Sensor
+
+curl -X POST http://localhost:8080/Coursework/api/v1/sensors \
+-H "Content-Type: application/json" \
+-d "{\"id\":\"CO2-001\",\"type\":\"CO2\",\"status\":\"ACTIVE\",\"currentValue\":0.0,\"roomId\":\"LIB-301\"}"
+
+##Get Sensor Readings
+
+curl http://localhost:8080/Coursework/api/v1/sensors/CO2-001/readings
 
 ---
 
